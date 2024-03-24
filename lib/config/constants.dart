@@ -11,6 +11,11 @@ class Constants {
   static const String countPelanggaranToday = 'dashboardapi/counthariini';
   static const String siswaapi = 'siswaapi/?search=';
   static const String kelasapi = 'kelasapi/?search=';
+  static const String jenispelanggaranapi = 'jenis_pelanggaranapi/?search=';
+  static const String jenispelanggaranapiAdd = 'jenis_pelanggaranapi/add';
+  static const String jenispelanggaranapiEdit = 'jenis_pelanggaranapi/update/';
+  static const String jenispelanggaranapiDelete = 'jenis_pelanggaranapi/delete/';
+
 
 
   /**
