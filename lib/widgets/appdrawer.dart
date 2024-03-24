@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:magangsipatuh/config/settings.dart';
 import 'package:magangsipatuh/pages/dashboard.dart';
 import 'package:magangsipatuh/pages/jenispelanggaran/jenispelanggaran.dart';
 import 'package:magangsipatuh/pages/kelas/kelas.dart';
 import 'package:magangsipatuh/pages/login.dart';
+import 'package:magangsipatuh/pages/pelanggaran/pelanggaran.dart';
 import 'package:magangsipatuh/pages/siswa/siswa.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -148,7 +151,7 @@ class AppDrawer extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(const DashboardPages());
+                Get.to(const SettingA());
               },
               child: const Padding(
                 padding: EdgeInsets.only(
@@ -197,18 +200,37 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             //Pelanggaran
-            const Padding(
-              padding: EdgeInsets.only(
-                top: 2,
-                bottom: 5,
-              ),
-              child: Text(
-                'Pelanggaran',
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.clip,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
+            GestureDetector(
+              onTap: () {
+                Get.to(() => const Pelanggaran());
+              },
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Icon(
+                      Icons.list_alt_outlined,
+                      color: Color(0xFF57636C),
+                      size: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Text(
+                        "Pelanggaran",
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),

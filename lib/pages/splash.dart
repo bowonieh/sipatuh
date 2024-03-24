@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "AKADEMIK",
+                    "siPatuh",
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
