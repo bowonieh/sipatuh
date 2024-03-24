@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:magangsipatuh/model/datamodel.dart';
+import 'package:magangsipatuh/services/authservices.dart';
 import 'package:magangsipatuh/widgets/appdrawer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
 class DashboardPages extends StatefulWidget {
   const DashboardPages({super.key});
 
@@ -10,18 +12,25 @@ class DashboardPages extends StatefulWidget {
   State<DashboardPages> createState() => _DashboardPagesState();
 }
 
+
 class _DashboardPagesState extends State<DashboardPages> {
+    int _selectedIndex = 0;
+    void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late TooltipBehavior _tooltipBehaviorKategori;
   late TooltipBehavior _tooltipBehaviorPelanggaranToday;
   late TooltipBehavior _tooltipBehaviorPelanggaranPerKelas;
   @override
-  void initState(){
+  void initState() {
     super.initState();
+    AuthService.checkLoginState();
     _tooltipBehaviorKategori = TooltipBehavior(enable: true);
     _tooltipBehaviorPelanggaranToday = TooltipBehavior(enable: true);
     _tooltipBehaviorPelanggaranPerKelas = TooltipBehavior(enable: true);
-
   }
 
   @override
@@ -56,10 +65,10 @@ class _DashboardPagesState extends State<DashboardPages> {
             ),
           ),
           */
-        
+
         leading: IconButton(
           icon: const Icon(Icons.menu),
-          onPressed: (){
+          onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
         ),
@@ -75,7 +84,6 @@ class _DashboardPagesState extends State<DashboardPages> {
             color: Color(0xffffffff),
           ),
         ),
-        
         actions: [
           Padding(
             padding: const EdgeInsets.only(
@@ -101,6 +109,7 @@ class _DashboardPagesState extends State<DashboardPages> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
+
         children: [
           GridView(
             padding: const EdgeInsets.all(16),
@@ -111,7 +120,7 @@ class _DashboardPagesState extends State<DashboardPages> {
               crossAxisCount: 3,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
-              childAspectRatio: 1,
+              childAspectRatio: 1.6,
             ),
             children: [
               //countsiswa
@@ -149,7 +158,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                             style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 30,
+                              fontSize: 24,
                               color: Color(0xffa5dff2),
                             ),
                           );
@@ -207,7 +216,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                             style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 30,
+                              fontSize: 24,
                               color: Color(0xffa4ddf0),
                             ),
                           );
@@ -264,7 +273,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                             style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 30,
+                              fontSize: 24,
                               color: Color(0xffa4ddf0),
                             ),
                           );
@@ -296,9 +305,8 @@ class _DashboardPagesState extends State<DashboardPages> {
               crossAxisCount: 2,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
-              childAspectRatio: 1,
+              childAspectRatio: 1.3,
             ),
-            
             children: [
               Container(
                 margin: const EdgeInsets.all(0),
@@ -344,12 +352,16 @@ class _DashboardPagesState extends State<DashboardPages> {
                               child: Text('Error: ${snapshot.error}'),
                             );
                           } else {
-                            List<PelanggaranKategoriData> _pelanggaranKategoriData = snapshot.data!;
+                            List<PelanggaranKategoriData>
+                                _pelanggaranKategoriData = snapshot.data!;
 
+                            
                             return SfCircularChart(
                               palette: const <Color>[
                                 Colors.amber,
                                 Colors.lightBlue,
+                                Colors.white,
+                                Colors.purple
                               ],
                               tooltipBehavior: _tooltipBehaviorKategori,
                               // legend: Legend(
@@ -357,12 +369,14 @@ class _DashboardPagesState extends State<DashboardPages> {
                               //   overflowMode: LegendItemOverflowMode.wrap,
                               // ),
                               series: <CircularSeries>[
-                                PieSeries<PelanggaranKategoriData, String>(
+                                DoughnutSeries<PelanggaranKategoriData, String>(
                                   dataSource: _pelanggaranKategoriData,
-                                  xValueMapper: (PelanggaranKategoriData data, _) =>
-                                      data.kategori,
-                                  yValueMapper: (PelanggaranKategoriData data, _) =>
-                                      data.total,
+                                  xValueMapper:
+                                      (PelanggaranKategoriData data, _) =>
+                                          data.kategori,
+                                  yValueMapper:
+                                      (PelanggaranKategoriData data, _) =>
+                                          data.total,
                                   dataLabelSettings:
                                       const DataLabelSettings(isVisible: true),
                                   enableTooltip: true,
@@ -377,7 +391,6 @@ class _DashboardPagesState extends State<DashboardPages> {
                   ],
                 ),
               ),
-              
               Container(
                 margin: const EdgeInsets.all(0),
                 padding: const EdgeInsets.all(0),
@@ -424,7 +437,8 @@ class _DashboardPagesState extends State<DashboardPages> {
                               child: Text('Error: ${snapshot.error}'),
                             );
                           } else {
-                            List<PelanggaranHariIniData> _pelanggaranHariIni = snapshot.data!;
+                            List<PelanggaranHariIniData> _pelanggaranHariIni =
+                                snapshot.data!;
                             return SfCircularChart(
                               palette: const <Color>[
                                 Colors.amber,
@@ -443,9 +457,12 @@ class _DashboardPagesState extends State<DashboardPages> {
                               series: <CircularSeries>[
                                 PieSeries<PelanggaranHariIniData, String>(
                                   dataSource: _pelanggaranHariIni,
-                                  xValueMapper: (PelanggaranHariIniData data, _) => data.jenis,
-                                  yValueMapper: (PelanggaranHariIniData data, _) =>
-                                      data.total,
+                                  xValueMapper:
+                                      (PelanggaranHariIniData data, _) =>
+                                          data.jenis,
+                                  yValueMapper:
+                                      (PelanggaranHariIniData data, _) =>
+                                          data.total,
                                   dataLabelSettings: const DataLabelSettings(
                                     isVisible: true,
                                   ),
@@ -461,20 +478,19 @@ class _DashboardPagesState extends State<DashboardPages> {
                 ),
               ),
             ],
-            
           ),
           Expanded(
             flex: 1,
             child: GridView(
               padding: const EdgeInsets.all(10),
-              shrinkWrap: false,
+              shrinkWrap: true,
               scrollDirection: Axis.vertical,
               physics: const ScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 2,
-                childAspectRatio: 1.4,
+                childAspectRatio: 1.60,
               ),
               children: [
                 Container(
@@ -496,7 +512,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                     children: [
                       const Padding(
                         padding: EdgeInsets.symmetric(
-                          vertical: 10,
+                          vertical: 5,
                           horizontal: 0,
                         ),
                         child: Text(
@@ -512,7 +528,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                         ),
                       ),
                       Container(
-                        height: 200,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         width: double.infinity,
                         child: FutureBuilder(
                           future: fetchPelanggaranPerKelasData(),
@@ -527,7 +543,8 @@ class _DashboardPagesState extends State<DashboardPages> {
                                 child: Text('Error: ${snapshot.error}'),
                               );
                             } else {
-                              List<PelanggaranPerKelasData> _pelanggaranPerKelasData = snapshot.data!;
+                              List<PelanggaranPerKelasData>
+                                  _pelanggaranPerKelasData = snapshot.data!;
                               return SfCartesianChart(
                                 primaryXAxis: CategoryAxis(
                                   labelStyle: const TextStyle(
@@ -546,17 +563,21 @@ class _DashboardPagesState extends State<DashboardPages> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                tooltipBehavior: _tooltipBehaviorPelanggaranPerKelas,
-                                series: <CartesianSeries<PelanggaranPerKelasData, String>>[
+                                tooltipBehavior:
+                                    _tooltipBehaviorPelanggaranPerKelas,
+                                series: <CartesianSeries<
+                                    PelanggaranPerKelasData, String>>[
                                   ColumnSeries<PelanggaranPerKelasData, String>(
                                     name: "Kelas",
                                     dataSource: _pelanggaranPerKelasData,
                                     color: Colors.amber,
-                                    xValueMapper: (PelanggaranPerKelasData data, _) =>
-                                        data.kelas,
-                                    yValueMapper: (PelanggaranPerKelasData data, _) =>
-                                        //int.tryParse(data.total)
-                                        data.total,
+                                    xValueMapper:
+                                        (PelanggaranPerKelasData data, _) =>
+                                            data.kelas,
+                                    yValueMapper:
+                                        (PelanggaranPerKelasData data, _) =>
+                                            //int.tryParse(data.total)
+                                            data.total,
                                     dataLabelSettings: const DataLabelSettings(
                                       color: Colors.white,
                                       isVisible: true,
@@ -575,10 +596,43 @@ class _DashboardPagesState extends State<DashboardPages> {
               ],
             ),
           ),
-        
         ],
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: const Color(0xff3b58ec),
+        shape: CircularNotchedRectangle(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.warning),
+              iconSize: 34,
+              color: Colors.white,
+              onPressed: () => _onItemTapped(0),
+            ),
+            
+            SizedBox(width: 64), // adjust the space to center
+            IconButton(
+              icon: Icon(Icons.person),
+              iconSize: 34,
+              color: Colors.white,
+              onPressed: () => _onItemTapped(1),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your action here
+        },
+        tooltip: 'ScanQr',
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0), // Adjust the value to make it more or less rounded
+        ),
+        backgroundColor:const Color(0xff3b58ec) ,
+        child: const Icon(Icons.qr_code,color: Colors.white,size: 32,),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
-  
   }
 }
