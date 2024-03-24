@@ -12,14 +12,14 @@ class DashboardPages extends StatefulWidget {
   State<DashboardPages> createState() => _DashboardPagesState();
 }
 
-
 class _DashboardPagesState extends State<DashboardPages> {
-    int _selectedIndex = 0;
-    void _onItemTapped(int index) {
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late TooltipBehavior _tooltipBehaviorKategori;
   late TooltipBehavior _tooltipBehaviorPelanggaranToday;
@@ -109,7 +109,6 @@ class _DashboardPagesState extends State<DashboardPages> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-
         children: [
           GridView(
             padding: const EdgeInsets.all(16),
@@ -355,7 +354,6 @@ class _DashboardPagesState extends State<DashboardPages> {
                             List<PelanggaranKategoriData>
                                 _pelanggaranKategoriData = snapshot.data!;
 
-                            
                             return SfCircularChart(
                               palette: const <Color>[
                                 Colors.amber,
@@ -437,39 +435,47 @@ class _DashboardPagesState extends State<DashboardPages> {
                               child: Text('Error: ${snapshot.error}'),
                             );
                           } else {
-                            List<PelanggaranHariIniData> _pelanggaranHariIni =
-                                snapshot.data!;
-                            return SfCircularChart(
-                              palette: const <Color>[
-                                Colors.amber,
-                                Colors.orange,
-                                Colors.cyan,
-                                Colors.redAccent,
-                                Colors.lightBlue,
-                                Colors.limeAccent,
-                              ],
+                            // ignore: unrelated_type_equality_checks
+                            if (snapshot.data == 0) {
+                              return const Center(
+                                child: Text('Tidak ada pelanggaran hari ini}'),
+                              );
+                            } else {
+                              List<PelanggaranHariIniData> pelanggaranHariIni =
+                                  snapshot.data!;
+                              return SfCircularChart(
+                                palette: const <Color>[
+                                  Colors.amber,
+                                  Colors.orange,
+                                  Colors.cyan,
+                                  Colors.redAccent,
+                                  Colors.lightBlue,
+                                  Colors.limeAccent,
+                                ],
 
-                              tooltipBehavior: _tooltipBehaviorPelanggaranToday,
-                              // legend: Legend(
-                              //   isVisible: true,
-                              //   overflowMode: LegendItemOverflowMode.wrap,
-                              // ),
-                              series: <CircularSeries>[
-                                PieSeries<PelanggaranHariIniData, String>(
-                                  dataSource: _pelanggaranHariIni,
-                                  xValueMapper:
-                                      (PelanggaranHariIniData data, _) =>
-                                          data.jenis,
-                                  yValueMapper:
-                                      (PelanggaranHariIniData data, _) =>
-                                          data.total,
-                                  dataLabelSettings: const DataLabelSettings(
-                                    isVisible: true,
-                                  ),
-                                  enableTooltip: true,
-                                )
-                              ],
-                            );
+                                tooltipBehavior:
+                                    _tooltipBehaviorPelanggaranToday,
+                                // legend: Legend(
+                                //   isVisible: true,
+                                //   overflowMode: LegendItemOverflowMode.wrap,
+                                // ),
+                                series: <CircularSeries>[
+                                  PieSeries<PelanggaranHariIniData, String>(
+                                    dataSource: pelanggaranHariIni,
+                                    xValueMapper:
+                                        (PelanggaranHariIniData data, _) =>
+                                            data.jenis,
+                                    yValueMapper:
+                                        (PelanggaranHariIniData data, _) =>
+                                            data.total,
+                                    dataLabelSettings: const DataLabelSettings(
+                                      isVisible: true,
+                                    ),
+                                    enableTooltip: true,
+                                  )
+                                ],
+                              );
+                            }
                           }
                         },
                       ),
@@ -610,7 +616,7 @@ class _DashboardPagesState extends State<DashboardPages> {
               color: Colors.white,
               onPressed: () => _onItemTapped(0),
             ),
-            
+
             SizedBox(width: 64), // adjust the space to center
             IconButton(
               icon: Icon(Icons.person),
@@ -627,10 +633,15 @@ class _DashboardPagesState extends State<DashboardPages> {
         },
         tooltip: 'ScanQr',
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0), // Adjust the value to make it more or less rounded
+          borderRadius: BorderRadius.circular(
+              50.0), // Adjust the value to make it more or less rounded
         ),
-        backgroundColor:const Color(0xff3b58ec) ,
-        child: const Icon(Icons.qr_code,color: Colors.white,size: 32,),
+        backgroundColor: const Color(0xff3b58ec),
+        child: const Icon(
+          Icons.qr_code,
+          color: Colors.white,
+          size: 32,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

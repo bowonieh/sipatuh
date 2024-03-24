@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magangsipatuh/pages/dashboard.dart';
+import 'package:magangsipatuh/pages/kelas.dart';
 import 'package:magangsipatuh/pages/login.dart';
 import 'package:magangsipatuh/pages/siswa.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -109,7 +110,7 @@ class AppDrawer extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                //Get.to(() => Kota());
+                Get.to(() => Kelas());
               },
               child: const Padding(
                 padding: EdgeInsets.only(
