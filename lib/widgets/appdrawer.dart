@@ -4,8 +4,6 @@ import 'package:magangsipatuh/pages/dashboard.dart';
 import 'package:magangsipatuh/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -33,6 +31,7 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
               padding: EdgeInsets.fromLTRB(0, 10, 90, 0),
@@ -43,8 +42,8 @@ class AppDrawer extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.only(
-                top: 10,
-                bottom: 10,
+                top: 2,
+                bottom: 2,
               ),
               child: Divider(
                 color: Color(0xFFC6C6C6),
@@ -54,37 +53,18 @@ class AppDrawer extends StatelessWidget {
                 endIndent: 0,
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Get.to(const DashboardPages());
-              },
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Icon(
-                      Icons.dashboard,
-                      color: Color(0xFF57636C),
-                      size: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text(
-                        "Dashboard",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      ),
-                    )
-                  ],
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 2,
+                bottom: 5,
+              ),
+              child: Text(
+                'Master Data',
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.clip,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -93,14 +73,17 @@ class AppDrawer extends StatelessWidget {
                 //Get.to(Siswa());
               },
               child: const Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                padding: EdgeInsets.only(
+                  top: 2,
+                  bottom: 5,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Icon(
-                      Icons.person,
+                      Icons.person_3_outlined,
                       color: Color(0xFF57636C),
                       size: 20,
                     ),
@@ -127,21 +110,24 @@ class AppDrawer extends StatelessWidget {
                 //Get.to(() => Kota());
               },
               child: const Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                padding: EdgeInsets.only(
+                  top: 2,
+                  bottom: 5,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Icon(
-                      Icons.location_city,
+                      Icons.people_alt_outlined,
                       color: Color(0xFF57636C),
                       size: 20,
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                       child: Text(
-                        "Kota Asal",
+                        "Kelas",
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
@@ -153,6 +139,72 @@ class AppDrawer extends StatelessWidget {
                       ),
                     )
                   ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.to(const DashboardPages());
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  top: 2,
+                  bottom: 5,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Icon(
+                      Icons.dashboard_outlined,
+                      color: Color(0xFF57636C),
+                      size: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Text(
+                        "Settings",
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 2,
+                bottom: 2,
+              ),
+              child: Divider(
+                color: Color(0xFFC6C6C6),
+                height: 16,
+                thickness: 2,
+                indent: 0,
+                endIndent: 0,
+              ),
+            ),
+            //Pelanggaran
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 2,
+                bottom: 5,
+              ),
+              child: Text(
+                'Pelanggaran',
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.clip,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -188,6 +240,19 @@ class AppDrawer extends StatelessWidget {
                     )
                   ],
                 ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 5,
+                bottom: 5,
+              ),
+              child: Divider(
+                color: Color(0xFFC6C6C6),
+                height: 16,
+                thickness: 2,
+                indent: 0,
+                endIndent: 0,
               ),
             ),
             Expanded(
