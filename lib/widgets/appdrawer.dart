@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magangsipatuh/pages/dashboard.dart';
 import 'package:magangsipatuh/pages/login.dart';
+import 'package:magangsipatuh/pages/siswa.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -71,6 +72,7 @@ class AppDrawer extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 //Get.to(Siswa());
+                Get.to(()=> Siswa());
               },
               child: const Padding(
                 padding: EdgeInsets.only(
@@ -208,12 +210,82 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            //Jenis Pelanggaran
             GestureDetector(
               onTap: () {
                 //Get.to(() => AboutApp());
               },
               child: const Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Icon(
+                      Icons.list_alt_outlined,
+                      color: Color(0xFF57636C),
+                      size: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Text(
+                        "Jenis Pelanggaran",
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            //Pelanggaran 
+            GestureDetector(
+              onTap: () {
+                //Get.to(() => AboutApp());
+              },
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Icon(
+                      Icons.error_outline_outlined,
+                      color: Color(0xFF57636C),
+                      size: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: Text(
+                        "Pelanggaran",
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                //Get.to(() => AboutApp());
+              },
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,

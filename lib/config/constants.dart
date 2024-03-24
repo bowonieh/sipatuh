@@ -9,6 +9,7 @@ class Constants {
   static const String countSiswa = 'dashboardapi/countsiswa';
   static const String countPelanggaran = 'dashboardapi/countpelanggaran';
   static const String countPelanggaranToday = 'dashboardapi/counthariini';
+  static const String siswaapi = 'siswaapi/?search=';
 
 
   /**
