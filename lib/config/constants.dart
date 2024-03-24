@@ -10,11 +10,18 @@ class Constants {
   static const String countPelanggaran = 'dashboardapi/countpelanggaran';
   static const String countPelanggaranToday = 'dashboardapi/counthariini';
   static const String siswaapi = 'siswaapi/?search=';
+  static const String siswaadd = 'siswaapi/add';
+  static const String siswaedit = 'siswaapi/update/';
+  static const String siswadelete = 'siswaapi/delete/';
   static const String kelasapi = 'kelasapi/?search=';
   static const String jenispelanggaranapi = 'jenis_pelanggaranapi/?search=';
   static const String jenispelanggaranapiAdd = 'jenis_pelanggaranapi/add';
   static const String jenispelanggaranapiEdit = 'jenis_pelanggaranapi/update/';
   static const String jenispelanggaranapiDelete = 'jenis_pelanggaranapi/delete/';
+  static const String pelanggaranapi = 'pelanggaranapi/?search=';
+  static const String pelanggaranapiadd = 'pelanggaranapi/add';
+  static const String pelanggaranapiupdate = 'pelanggaranapi/update';
+  static const String pelanggaranapidelete = 'pelanggaranapi/delete';
 
 
 

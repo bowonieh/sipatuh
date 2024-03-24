@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:magangsipatuh/model/datamodel.dart';
+import 'package:magangsipatuh/pages/scanqr/scanqr.dart';
 import 'package:magangsipatuh/services/authservices.dart';
 import 'package:magangsipatuh/widgets/appdrawer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -496,7 +498,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                 crossAxisCount: 1,
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 2,
-                childAspectRatio: 1.60,
+                childAspectRatio: 1.2,
               ),
               children: [
                 Container(
@@ -630,6 +632,7 @@ class _DashboardPagesState extends State<DashboardPages> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Add your action here
+          Get.to(() => ScanQr());
         },
         tooltip: 'ScanQr',
         shape: RoundedRectangleBorder(
