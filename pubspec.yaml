@@ -1,5 +1,5 @@
 name: magangsipatuh
-description: "A new Flutter project."
+description: "Aplikasi pencatatan pelanggaran di sekolah."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -42,11 +42,19 @@ dependencies:
   qr_code_scanner: ^1.0.1
   blue_thermal_printer: ^1.2.3
   url_launcher: ^6.2.5
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logoapp.png"
+  macos:
+    generate: true
+    image_path: "assets/images/logoapp.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:magangsipatuh/config/settings.dart';
-import 'package:magangsipatuh/pages/dashboard.dart';
+import 'package:magangsipatuh/pages/app_about.dart';
 import 'package:magangsipatuh/pages/jenispelanggaran/jenispelanggaran.dart';
 import 'package:magangsipatuh/pages/kelas/kelas.dart';
 import 'package:magangsipatuh/pages/login.dart';
@@ -77,7 +76,7 @@ class AppDrawer extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 //Get.to(Siswa());
-                Get.to(()=> Siswa());
+                Get.to(()=> const Siswa());
               },
               child: const Padding(
                 padding: EdgeInsets.only(
@@ -114,7 +113,7 @@ class AppDrawer extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(() => Kelas());
+                Get.to(() => const Kelas());
               },
               child: const Padding(
                 padding: EdgeInsets.only(
@@ -273,7 +272,7 @@ class AppDrawer extends StatelessWidget {
             
             GestureDetector(
               onTap: () {
-                //Get.to(() => AboutApp());
+                Get.to(() => const AppTentang());
               },
               child: const Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
