@@ -56,8 +56,7 @@ class _PelanggaranAddQrCodeState extends State<PelanggaranAddQrCode> {
   BluetoothDevice? selectedDevices;
   BlueThermalPrinter printer = BlueThermalPrinter.instance;
   DateTime selectedDate = DateTime.now();
-  String formattedDate =
-      DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now());
+  String formattedDate = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now());
   String nomor = "";
   bool isPrintSelected = false;
   bool isSaveSelected = false;
@@ -150,8 +149,8 @@ class _PelanggaranAddQrCodeState extends State<PelanggaranAddQrCode> {
         'Cookie': token,
       },
     );
-
-    if (response.statusCode == 200) {
+    Map<String, dynamic> responseData = jsonDecode(response.body);
+    if (response.statusCode == 200 && responseData['status']) {
       isLoading.value = false;
       Get.snackbar(
         'Sukses',
@@ -159,6 +158,7 @@ class _PelanggaranAddQrCodeState extends State<PelanggaranAddQrCode> {
         colorText: Colors.white,
         backgroundColor: Colors.green[400],
         icon: const Icon(Icons.add_alert),
+        duration: const Duration(seconds: 3)
       );
       Get.to(() => const DashboardPages());
     } else {
@@ -267,7 +267,7 @@ Future<void> loadSavedDropdownValue() async {
         ),
         leading: GestureDetector(
           onTap: () {
-            Get.to(ScanQr());
+            Get.to(() => ScanQr());
           },
           child: Icon(
             Icons.arrow_back,
@@ -284,7 +284,7 @@ Future<void> loadSavedDropdownValue() async {
             ),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                _printData();
+                //_printData();
                 siswaAdd();
               }
             },
@@ -490,8 +490,8 @@ Future<void> loadSavedDropdownValue() async {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -508,11 +508,13 @@ Future<void> loadSavedDropdownValue() async {
                             ),
                           ),
                           TextFormField(
+                            //controller: tanggalController,
                             initialValue: formattedDate,
                             enabled: false,
                             obscureText: false,
                             textAlign: TextAlign.start,
                             maxLines: 1,
+                            readOnly: true,
                             style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,

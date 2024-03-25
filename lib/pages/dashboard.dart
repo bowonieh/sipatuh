@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:magangsipatuh/model/datamodel.dart';
+import 'package:magangsipatuh/pages/pelanggaran/pelanggaran.dart';
 import 'package:magangsipatuh/pages/scanqr/scanqr.dart';
+import 'package:magangsipatuh/pages/siswa/siswa.dart';
 import 'package:magangsipatuh/services/authservices.dart';
 import 'package:magangsipatuh/widgets/appdrawer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -552,15 +554,15 @@ class _DashboardPagesState extends State<DashboardPages> {
                               );
                             } else {
                               List<PelanggaranPerKelasData>
-                                  _pelanggaranPerKelasData = snapshot.data!;
+                                  pelanggaranPerKelasData = snapshot.data!;
                               return SfCartesianChart(
-                                primaryXAxis: CategoryAxis(
-                                  labelStyle: const TextStyle(
+                                primaryXAxis: const CategoryAxis(
+                                  labelStyle: TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
-                                primaryYAxis: NumericAxis(
-                                  labelStyle: const TextStyle(
+                                primaryYAxis: const NumericAxis(
+                                  labelStyle: TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -577,7 +579,7 @@ class _DashboardPagesState extends State<DashboardPages> {
                                     PelanggaranPerKelasData, String>>[
                                   ColumnSeries<PelanggaranPerKelasData, String>(
                                     name: "Kelas",
-                                    dataSource: _pelanggaranPerKelasData,
+                                    dataSource: pelanggaranPerKelasData,
                                     color: Colors.amber,
                                     xValueMapper:
                                         (PelanggaranPerKelasData data, _) =>
@@ -608,23 +610,23 @@ class _DashboardPagesState extends State<DashboardPages> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: const Color(0xff3b58ec),
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.warning),
+              icon: const Icon(Icons.warning),
               iconSize: 34,
               color: Colors.white,
-              onPressed: () => _onItemTapped(0),
+              onPressed: () => { Get.to(() => const Pelanggaran())},
             ),
 
-            SizedBox(width: 64), // adjust the space to center
+            const SizedBox(width: 64), // adjust the space to center
             IconButton(
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
               iconSize: 34,
               color: Colors.white,
-              onPressed: () => _onItemTapped(1),
+              onPressed: () => {Get.to(() => const Siswa())},
             ),
           ],
         ),
@@ -632,7 +634,7 @@ class _DashboardPagesState extends State<DashboardPages> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Add your action here
-          Get.to(() => ScanQr());
+          Get.to(() => const ScanQr());
         },
         tooltip: 'ScanQr',
         shape: RoundedRectangleBorder(
