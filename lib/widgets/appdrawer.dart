@@ -212,7 +212,7 @@ class AppDrawer extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Icon(
-                      Icons.list_alt_outlined,
+                      Icons.warning_outlined,
                       color: Color(0xFF57636C),
                       size: 20,
                     ),
@@ -270,40 +270,7 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             //Pelanggaran 
-            GestureDetector(
-              onTap: () {
-                //Get.to(() => AboutApp());
-              },
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Icon(
-                      Icons.error_outline_outlined,
-                      color: Color(0xFF57636C),
-                      size: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text(
-                        "Pelanggaran",
-                        textAlign: TextAlign.start,
-                        overflow: TextOverflow.clip,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            
             GestureDetector(
               onTap: () {
                 //Get.to(() => AboutApp());
